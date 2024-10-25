@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import logo from "../img/clip-svgrepo-com.svg"; // Убедитесь, что путь к вашему логотипу корректный
-import "./FileUploadButton.css"; // Импортирую стили
+import "./FileUploadButton.css"; // Импортируйте стили
 
-const FileUploadButton = () => {
+const FileUploadButton = ({ onFileChange }) => { // Принимаем функцию для изменения файла как пропс
     const fileInputRef = useRef(null);
 
     const handleButtonClick = () => {
@@ -14,8 +14,7 @@ const FileUploadButton = () => {
         if (file) {
             const allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
             if (allowedTypes.includes(file.type)) {
-                console.log("Выбран файл:", file);
-                // Здесь вы можете добавить дополнительную логику для работы с выбранным файлом
+                onFileChange(file); // Передаем выбранный файл в родительский компонент
             } else {
                 alert("Пожалуйста, выберите файл формата PDF или Word.");
             }

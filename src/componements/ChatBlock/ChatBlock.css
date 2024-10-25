@@ -12,6 +12,7 @@
     background-color: #f0f0f0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    margin-bottom: 10px; /* Добавлено для отступа между сообщениями */
 }
 
 .message-item.sent {
@@ -24,12 +25,23 @@
     align-self: flex-start;
 }
 
+.message-item .user-info {
+    display: flex;
+    align-items: center; /* Центрируем аватар и имя по вертикали */
+    margin-bottom: 5px; /* Добавлено для отступа между user-info и текстом сообщения */
+}
+
+.message-item .user-name {
+    margin-left: 10px; /* Отступ между аватаром и именем */
+}
+
 .message-item span {
     display: block;
 }
 
 .message-item .timestamp {
     font-size: 0.8em;
+    margin-top: 5px; /* Добавлено для отступа между текстом и временной меткой */
 }
 
 .center-container {
@@ -51,7 +63,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
+
 .chat-message-input {
     flex-grow: 1;
     padding: 15px;
@@ -64,6 +78,7 @@
     overflow-y: auto;
     resize: none;
     background-color: #f8f8f8;
+    transition: box-shadow 0.3s ease;
 }
 
 .send-form {
@@ -99,3 +114,39 @@
     border-color: #4CAF50;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-item.sent .user-name {
+    color: white;
+}
+
+.groot-avatar {
+    filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(180deg) brightness(105%) contrast(105%);
+}
+
+
+.chat-message-input:focus {
+    outline: none; /* Убираем стандартную обводку */
+    box-shadow: 0 0 10px 4px rgba(76, 175, 80, 0.5); /* Светящийся эффект */
+}
+
+/* Стили для placeholder */
+.chat-message-input::placeholder {
+    color: #e0e0e0;
+    opacity: 0.7;
+}
+
+/* Стили для фокуса */
+.chat-message-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 10px 4px rgba(76, 175, 80, 0.5); /* Изменяем сюда */
+}
+
+/* Остальные стили из вашего кода без изменений */
