@@ -1,0 +1,29 @@
+.App {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1000;
+    background-color: #228B22;
+    color: white;
+}
+
+.center-container {
+    flex-grow: 1;
+    display: flex;
+}
+
+.chat-block {
+    width: 100%;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    background-color: #FFFFF0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

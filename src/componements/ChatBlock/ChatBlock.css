@@ -1,0 +1,101 @@
+
+.message-list {
+    padding: 20px;
+    list-style-type: none;
+    margin: 0;
+}
+
+.message-item {
+    max-width: 70%;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.message-item.sent {
+    align-self: flex-end;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.message-item.received {
+    align-self: flex-start;
+}
+
+.message-item span {
+    display: block;
+}
+
+.message-item .timestamp {
+    font-size: 0.8em;
+}
+
+.center-container {
+    position: relative;
+    width: 70vw;
+    height: 85vh;
+    left: 55%;
+    top: 60px;
+    transform: translateX(-50%);
+    background-color: transparent;
+}
+
+.chat-input-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chat-message-input {
+    flex-grow: 1;
+    padding: 15px;
+    height: 84px;
+    border: none;
+    border-radius: 25px;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    max-height: 250px;
+    overflow-y: auto;
+    resize: none;
+    background-color: #f8f8f8;
+}
+
+.send-form {
+    display: flex;
+    align-items: center;
+}
+
+.send-button {
+    padding: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.send-button:hover {
+    transform: scale(1.05);
+}
+
+/* Стили для placeholder */
+.chat-message-input::placeholder {
+    color: #e0e0e0;
+    opacity: 0.7;
+}
+
+/* Стили для фокуса */
+.chat-message-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}

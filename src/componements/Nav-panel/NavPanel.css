@@ -1,0 +1,26 @@
+.nav-panel {
+    background-color: #228B22;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.groot-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 64px;
+    margin-bottom: 20px;
+    margin-top: 65px;
+    cursor: pointer;
+}
+
+.groot-title:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
