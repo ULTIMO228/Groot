@@ -150,3 +150,90 @@
 }
 
 /* Остальные стили из вашего кода без изменений */
+.file-info {
+    margin-left: 10px; /* Отступ слева от кнопки отправки */
+    font-size: 0.9em; /* Немного уменьшенный шрифт */
+    color: #555; /* Цвет текста */
+}
+.file-info {
+    margin-left: 10px; /* Отступ слева от кнопки отправки */
+    font-size: 0.9em; /* Немного уменьшенный шрифт */
+    color: #555; /* Цвет текста */
+    background-color: #e0f7e3; /* Светло-зеленый фон, сочетающийся с чатом */
+    border: 1px solid #4CAF50; /* Зеленая рамка */
+    border-radius: 5px; /* Скруглённые углы */
+    padding: 5px 10px; /* Внутренние отступы */
+    display: flex; /* Используем flex для выравнивания */
+    align-items: center; /* Центрируем контент по вертикали */
+    transition: background-color 0.3s ease; /* Плавный переход фона */
+}
+
+.file-info:hover {
+    background-color: #c8e6c9; /* Эффект при наведении для выделения */
+}
+
+.file-icon {
+    width: 20px; /* Размер иконки файла */
+    height: 20px; /* Размер иконки файла */
+    margin-right: 5px; /* Отступ справа от иконки */
+}
+.chat-block-information{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.remove-file-btn{
+    background-color: #228B22;
+    color: white;
+    border-radius: 5px;
+    border-bottom: white;
+}
+.chat-block {
+    display: flex; /* Делаем блок флекс-контейнером */
+    flex-direction: column; /* Выстраиваем элементы по вертикали */
+    height: 100vh; /* Высота всего экрана */
+}
+
+.chat-block-information {
+    display: flex;
+    flex-direction: column; /* Вертикальное выравнивание */
+}
+
+.message-list {
+    padding: 20px;
+    list-style-type: none;
+    margin: 0;
+    overflow-y: auto; /* Добавить прокрутку, если сообщений много */
+    flex-grow: 1; /* Занимает всё доступное пространство */
+}
+
+.chat-input-container {
+    position: relative; /* Изменяем на относительное */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8; /* Конкретный цвет фона для ввода */
+    border-top: 1px solid #ccc; /* Добавлено для оформление */
+}
+.message-item {
+    max-width: 70%;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 10px; /* Добавлено для отступа между сообщениями */
+    word-wrap: break-word; /* Позволяет переносить длинные слова */
+    overflow-wrap: break-word; /* Позволяет переносить длинные строки */
+}
+
+.message-item span {
+    display: block;
+    white-space: pre-wrap; /* Перенос строки, если текст превышает ширину */
+}

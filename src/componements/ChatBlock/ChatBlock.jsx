@@ -8,7 +8,8 @@ import FileUploadButton from "../FileUploadButton/FileUploadButton";
 
 export default function ChatBlock() {
     const [message, setMessage] = useState('');
-    const [file, setFile] = useState(null); // Новое состояние для загруженного файла
+    const [file, setFile] = useState(null);
+    const [uploadStatus, setUploadStatus] = useState(''); // New state for file upload status
     const [isInputActive, setIsInputActive] = useState(false);
     const [messages, setMessages] = useState([
         { text: 'Привет! Я - Groot.', sender: 'Groot', timestamp: new Date().toLocaleTimeString() },
@@ -28,21 +29,28 @@ export default function ChatBlock() {
     };
 
     const handleFileChange = (file) => {
-        setFile(file); // Устанавливаем выбранный файл
+        setFile(file);
+        setUploadStatus('Файл загружен');
+    };
+
+    const handleRemoveFile = () => {
+        setFile(null);
+        setUploadStatus('');
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (message.trim() || file) { // Проверяем, что есть сообщение или файл
+        if (message.trim() || file) {
             const newMessage = {
                 text: message,
                 sender: 'Пользователь',
                 timestamp: new Date().toLocaleTimeString(),
-                file: file ? URL.createObjectURL(file) : null // Создаем URL для отображения файла
+                file: file ? URL.createObjectURL(file) : null
             };
             sendMessage(newMessage);
             setMessage('');
-            setFile(null); // Сбрасываем файл после отправки
+            setFile(null);
+            setUploadStatus('');
         }
     };
 
@@ -52,19 +60,14 @@ export default function ChatBlock() {
 
     return (
         <div className="chat-block">
-            <div className={`chat-input-container `}>
-                <FileUploadButton onFileChange={handleFileChange} /> {/* Передаем функцию для изменения файла */}
-                <textarea
-                    ref={textareaRef}
-                    value={message}
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    placeholder="Введите сообщение здесь..."
-                    className="chat-message-input"
-                />
-                <form onSubmit={handleSubmit} className="send-form">
-                    <button type="submit" className="send-button">Отправить</button>
-                </form>
+            <div className="chat-block-information">
+                {file && (
+                    <div className="file-info">
+                        <span>{file.name} ({Math.round(file.size / 1024)} KB)</span>
+                        <span>{uploadStatus}</span>
+                        <button onClick={handleRemoveFile} className="remove-file-btn">Удалить файл</button>
+                    </div>
+                )}
             </div>
             <div className="message-list">
                 {messages.map((msg, index) => (
@@ -79,10 +82,24 @@ export default function ChatBlock() {
                             <span className={`user-name ${msg.sender === 'Пользователь' ? 'sent' : ''}`}>{msg.sender}</span>
                         </div>
                         <span>{msg.text}</span>
-                        {msg.file && <a href={msg.file} download>Скачать файл</a>} {/* Ссылка на скачивание файла */}
+                        {msg.file && <a href={msg.file} download>Скачать файл</a>}
                         <small>{msg.timestamp}</small>
                     </div>
                 ))}
+            </div>
+            <div className="chat-input-container">
+                <FileUploadButton onFileChange={handleFileChange} onRemoveFile={handleRemoveFile} />
+                <textarea
+                    ref={textareaRef}
+                    value={message}
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    placeholder="Введите сообщение здесь..."
+                    className="chat-message-input"
+                />
+                <form onSubmit={handleSubmit} className="send-form">
+                    <button type="submit" className="send-button">Отправить</button>
+                </form>
             </div>
         </div>
     );
