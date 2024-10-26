@@ -1,15 +1,22 @@
-import random
-from transformers import RagTokenizer, RagSequenceForGeneration, AutoModelForSeq2SeqLM
+from transformers import pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
 # Агент 1: Поиск и извлечение релевантной информации
 class SearchAgent:
     def __init__(self, dataset):
         self.dataset = dataset
 
-    def search(self, query):
-        # В данном примере просто выбираем случайный элемент из набора данных
-        relevant_docs = random.sample(self.dataset, 2)  # Возвращаем две случайные записи
-        return relevant_docs
+    def search(self, query, top_n=5):
+        query_vector = self.vectorizer.transform([query])
+        similarities = cosine_similarity(query_vector, self.document_matrix).flatten()
+        indices = np.argsort(similarities)[::-1][:top_n]
+        
+        results = []
+        for index in indices:
+            results.append((self.documents[index], similarities[index]))
+        return results
 
 # Агент 2: Дополнение запроса
 class AugmentationAgent:
@@ -22,30 +29,10 @@ class AugmentationAgent:
 # Агент 3: Генерация ответа
 class GenerationAgent:
     def __init__(self):
-        self.tokenizer = RagTokenizer.from_pretrained("facebook/rag-sequence-nq")
-        self.model = RagSequenceForGeneration.from_pretrained("facebook/rag-sequence-nq")
+        self.generator = pipeline("text2text-generation", model="ai-forever/ruGPT-3.5-13B")
 
     def generate_answer(self, questions, documents):
-        input_dict = self.tokenizer.prepare_seq2seq_batch(questions, documents, return_tensors="pt", padding=True)
-        output = self.model.generate(input_ids=input_dict['input_ids'], attention_mask=input_dict['attention_mask'])
-        return self.tokenizer.batch_decode(output, skip_special_tokens=True)
+        inputs = [f"{q} {doc}" for q, doc in zip(questions, documents)]
+        outputs = self.generator(inputs)
+        return [output['generated_text'] for output in outputs]
 
-# Пример использования
-
-# Загружаем ваш набор данных (например, из CSV или JSON)
-
-
-retriever = SearchAgent(dataset)
-augmentation = AugmentationAgent()
-generation = GenerationAgent()
-
-# Имеем запрос от пользователя
-user_query = str(input())
-
-# Процесс
-relevant_docs = retriever.search(user_query)
-augmented_questions = augmentation.augment(user_query, relevant_docs)
-final_answer = generation.generate_answer(augmented_questions, relevant_docs)
-
-# Выводим результат
-print(final_answer)

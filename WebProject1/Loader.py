@@ -17,7 +17,7 @@ def extract_text_from_docx(docx_path):
         text += paragraph.text + '\n'
     return text
 #Общая функция извлечения текста из всех файлов в директории
-def load_data_from_files(directory):
+def load_data(directory):
     data = []
     for filename in os.listdir(directory):
         if filename.endswith('.pdf'):
