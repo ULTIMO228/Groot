@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import NavPanel from "../Nav-panel/NavPanel";
-import ChatBlock from "../ChatBlock/ChatBlock";
+import NavPanel from "../Nav-panel/NavPanel.js";
+import ChatBlock from "../ChatBlock/ChatBlock.jsx";
 
 function App() {
     return (

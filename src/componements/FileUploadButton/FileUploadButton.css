@@ -4,9 +4,9 @@
 }
 
 .add-button {
-    width: 70px;
-    height: 70px;
-    border: 2px solid #007bff;
+    width: 55px;
+    height: 55px;
+    border: 2px solid #367f34b0;
     border-radius: 50%;
     background-color: #f8f9fa;
     display: flex;
@@ -22,6 +22,6 @@
 }
 
 .add-button-img {
-    width: 40px; /* Подберите размер логотипа по своему усмотрению */
-    height: 40px; /* Подберите размер логотипа по своему усмотрению */
+    width: 35px; /* Подберите размер логотипа по своему усмотрению */
+    height: 35px; /* Подберите размер логотипа по своему усмотрению */
 }

@@ -13,12 +13,16 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     margin-bottom: 10px; /* Добавлено для отступа между сообщениями */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
 }
 
 .message-item.sent {
     align-self: flex-end;
-    background-color: #4CAF50;
+    background-color: #2f8232;
     color: white;
+    left: 30%;
+    position: sticky;
 }
 
 .message-item.received {
@@ -49,7 +53,6 @@
     width: 70vw;
     height: 85vh;
     left: 55%;
-    top: 60px;
     transform: translateX(-50%);
     background-color: transparent;
 }
@@ -79,6 +82,9 @@
     resize: none;
     background-color: #f8f8f8;
     transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 10px 4px rgba(76, 175, 80, 0.5);
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
 .send-form {
@@ -93,7 +99,8 @@
     border: none;
     border-radius: 25px;
     font-family: Georgia, serif;
-    font-size: 24px;
+    font-size: 18px;
+    height: 70px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
 }
@@ -106,13 +113,6 @@
 .chat-message-input::placeholder {
     color: #e0e0e0;
     opacity: 0.7;
-}
-
-/* Стили для фокуса */
-.chat-message-input:focus {
-    outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 .user-avatar {
@@ -192,6 +192,7 @@
     color: white;
     border-radius: 5px;
     border-bottom: white;
+    margin-left: 50px;
 }
 .chat-block {
     display: flex; /* Делаем блок флекс-контейнером */
@@ -237,3 +238,85 @@
     display: block;
     white-space: pre-wrap; /* Перенос строки, если текст превышает ширину */
 }
+.file-info {
+    overflow: hidden; /* Скрываем переполнение */
+    white-space: nowrap; /* Запрет переносов переноса строк */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+    max-width: 60vw;
+}
+
+.file-info span {
+    overflow: hidden; /* Скрыть переполнение */
+    white-space: nowrap; /* Запрет переноса слов на следующую строку */
+    text-overflow: ellipsis; /* Добавить многоточие */
+}
+@media (max-width: 1780px) {
+    .center-container{
+        left:62vw;
+    }
+}
+@media (max-width: 600px) {
+    .chat-input-container {
+        padding: 5px; /* Уменьшаем отступы */
+    }
+
+    .chat-message-input {
+        font-size: 16px; /* Уменьшаем шрифт еще больше для очень маленьких экранов */
+    }
+
+    .send-button {
+        padding: 5px; /* Уменьшаем padding для кнопки */
+        font-size: 16px; /* Уменьшаем размер шрифта */
+    }
+
+    .message-item {
+        padding: 8px; /* Уменьшаем внутренние отступы */
+    }
+}
+
+@media (max-width: 400px) {
+    .message-item {
+        max-width: 100%; /* Полная ширина сообщения на очень маленьких экранах */
+    }
+}
+.file-info {
+    display: flex;
+    align-items: center; /* Центрируем содержимое по вертикали */
+    margin-top: 5px; /* Отступ сверху для визуального разделения */
+    background-color: #e0f7e3; /* Цвет фона для блока файла */
+    border: 1px solid #4CAF50; /* Зеленая рамка */
+    border-radius: 5px; /* Скругленные углы */
+    padding: 5px 10px; /* Внутренние отступы */
+}
+
+.file-name {
+    flex-grow: 1; /* Занимает доступное пространство */
+    margin-left: 10px; /* Отступ слева от иконки */
+    font-size: 0.9em; /* Размер шрифта */
+    overflow: hidden; /* Скрыть текст, выходящий за пределы */
+    white-space: nowrap; /* Не переносим */
+    text-overflow: ellipsis; /* Троеточие для слишком длинных названий */
+}
+
+.file-size {
+    font-size: 0.9em; /* Размер шрифта для размера файла */
+    margin-left: 5px; /* Отступ слева от размера файла */
+}
+
+.download-link {
+    display: flex;
+    align-items: center; /* Центрируем по вертикали */
+    margin-left: 10px; /* Отступ слева от текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #4CAF50; /* Цвет текста для ссылки */
+}
+
+.download-link:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.file-icon {
+    width: 20px; /* Размер иконки файла */
+    height: 20px; /* Размер иконки файла */
+}
+
